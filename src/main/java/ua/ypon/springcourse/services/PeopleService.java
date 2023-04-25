@@ -6,8 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.ypon.springcourse.models.Person;
 import ua.ypon.springcourse.repositories.PeopleRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+/*
+У пакеті service розміщені класи, які містять бізнес-логіку програми.
+Вони використовують DAO-класи(repository) для взаємодії з базою даних.
+
+ */
 
 @Service
 @Transactional(readOnly = true)
@@ -32,6 +38,7 @@ public class PeopleService {
 
     @Transactional
     public void save (Person person) {
+        person.setCreateAt(new Date());//призначаємо новоствореній людині дату на зараз
         peopleRepository.save(person);
     }
 

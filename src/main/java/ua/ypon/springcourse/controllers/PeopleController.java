@@ -9,6 +9,7 @@ import ua.ypon.springcourse.models.Person;
 import ua.ypon.springcourse.services.ItemService;
 import ua.ypon.springcourse.services.PeopleService;
 
+
 import javax.validation.Valid;
 
 @Controller
@@ -42,14 +43,17 @@ public class PeopleController {
         return "people/new";
     }
 
-    @PostMapping()//valid- проверка условий. BindingResult-объект для хранения ошибок при создании Person и введении неValid.
+    @PostMapping()//valid- проверка условий. BindingResult-объект для хранения ошибок при
+    // создании Person и введении неValid.
     public String create(@ModelAttribute("person") @Valid Person person,
-                         BindingResult bindingResult) {//с помощью @ModelAttribute создаем нового человека(пустой объект класса Person)
+                         BindingResult bindingResult) {//с помощью @ModelAttribute создаем нового
+        // человека(пустой объект класса Person)
 
         if(bindingResult.hasErrors())
             return "people/new";
 
-        peopleService.save(person);//затем эта же аннотация внедряет значение из формы в этот объект класса Person. Затем она этот объект добавляет в модель.
+        peopleService.save(person);//затем эта же аннотация внедряет значение из формы
+        // в этот объект класса Person. Затем она этот объект добавляет в модель.
         return "redirect:/people";
     }
 

@@ -12,7 +12,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "Item name should not be epty")
+    @NotEmpty(message = "Item name should not be empty")
     @Column(name = "item_name")
     private String itemName;
 

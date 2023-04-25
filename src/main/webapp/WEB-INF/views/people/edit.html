@@ -19,6 +19,16 @@
     <input type="text" th:field="*{email}" id="email"/>
     <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
     <br/>
+    <label for="date_of_birth">Enter data of birth: </label>
+    <script type="text/javascript" src="http://htmlweb.ru/calendar_kdg.js" async="async"></script>
+    <label>
+        <input type="text" th:field="*{dataOfBirth}" id="date_of_birth"
+               onfocus="_Calendar.lcs(this)" onclick="_Calendar.lcs(event)" ontouch="_Calendar.lcs(event)" data-yearfrom="-80">
+    </label>
+
+    <div style="color:red" th:if="${#fields.hasErrors('dataOfBirth')}"
+         th:errors="*{dataOfBirth}">Data of birth Error</div>
+    <br/>
     <input type="submit" value="Update!"/>
 </form>
 

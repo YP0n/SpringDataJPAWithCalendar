@@ -1,10 +1,10 @@
 package ua.ypon.springcourse.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -26,10 +26,21 @@ public class Person {
 
     @Email
     @Column(name = "email")
+    @NotEmpty(message = "email should not be empty")
     private String email;
 
     @OneToMany(mappedBy = "owner")
     private List<Item> items;
+
+    @Column(name = "date_of_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    //@Pattern(regexp = "\\d{2}/\\d{2}/\\d{4}", message = "Enter date in formate dd.MM.yyyy")
+    private Date dataOfBirth;
+
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
     public Person() {
     }
@@ -70,6 +81,22 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getDataOfBirth() {
+        return dataOfBirth;
+    }
+
+    public void setDataOfBirth(Date dataOfBirth) {
+        this.dataOfBirth = dataOfBirth;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     @Override
